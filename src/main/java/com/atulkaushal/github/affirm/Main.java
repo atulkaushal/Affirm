@@ -17,7 +17,11 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
-/** The Class Main1. */
+/**
+ * The Class Main.
+ *
+ * @author Atul
+ */
 public class Main {
 
   /** The Constant LOANS_CSV. */
@@ -46,6 +50,7 @@ public class Main {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   private static void init() throws CsvValidationException, FileNotFoundException, IOException {
+    System.out.println("Loading data from CSV files.");
     facilityService = new FacilityService(FACILITIES_CSV, COVENANTS_CSV);
     assignmentService = new AssignmentService();
     yeildsService = new YeildsService();
@@ -63,10 +68,13 @@ public class Main {
     init();
 
     List<Loan> loans = loadLoanData();
+    System.out.println("Total Loans: " + loans.size());
     LoanService loanService = new LoanService(facilityService, assignmentService, yeildsService);
     for (Loan loan : loans) {
       loanService.processLoan(loan);
     }
+    System.out.println(
+        "Loan CSV file has been processed. Generating Assignment and Yeilds csv files.");
     generateReports();
   }
 

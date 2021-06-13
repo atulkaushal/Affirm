@@ -7,7 +7,11 @@ import java.util.List;
 import com.atulkaushal.github.affirm.model.Facility;
 import com.atulkaushal.github.affirm.model.Loan;
 
-/** The Class LoanService. */
+/**
+ * The Class LoanService.
+ *
+ * @author Atul
+ */
 public class LoanService {
 
   /** The facility service. */
@@ -36,13 +40,13 @@ public class LoanService {
   }
 
   /**
-   * Assign loan.
+   * Process loan.
    *
    * @param loan the loan
-   * @return the integer
+   * @return true, if successful
    */
   public boolean processLoan(Loan loan) {
-    System.out.println("Starting processing for loan id: " + loan.getId());
+    // System.out.println("Starting processing for loan id: " + loan.getId());
     Iterator<BigDecimal> iterator =
         facilityService.getFacilitiesSortedByInterestRate().keySet().iterator();
 
